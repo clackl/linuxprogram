@@ -35,7 +35,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="twordcount2.c" />
+    <ClCompile Include="threadpool.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="threadpool.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0f7ecd37-f1d0-4c45-87eb-75a03c6028d4}</ProjectGuid>

@@ -30,10 +30,11 @@ int make_server_socket_q(int portnum, int backlog)
 	char hostname[HOSTLEN];
 	int sock_id;
 
-	sock_id = socket(PF_INET, SOCK_STREAM, 0);
+	sock_id = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock_id == -1)
 		return -1;
-
+	int opt = 1;
+	setsockopt(sock_id, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
 	bzero((void *)&saddr, sizeof(saddr));
 	if (gethostname(hostname, HOSTLEN) == -1) {
 		perror("gethostname");
@@ -50,8 +51,7 @@ int make_server_socket_q(int portnum, int backlog)
 
 	if (listen(sock_id, backlog) != 0)
 		return -1;
-	int opt = 1;
-	setsockopt(sock_id, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+	
 	return sock_id;
 }
 
